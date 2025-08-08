@@ -1,19 +1,14 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist/public",
   "installCommand": "npm install",
-  "framework": "node",
+  "framework": "vite",
   "functions": {
-    "dist/vercel.js": {
+    "api/newsletter/subscribe.ts": {
+      "runtime": "nodejs18.x"
+    },
+    "api/newsletter/subscriptions.ts": {
       "runtime": "nodejs18.x"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/dist/vercel.js"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
   }
 }
