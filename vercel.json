@@ -2,13 +2,5 @@
   "buildCommand": "vite build",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
-  "framework": "vite",
-  "functions": {
-    "api/newsletter/subscribe.ts": {
-      "runtime": "nodejs18.x"
-    },
-    "api/newsletter/subscriptions.ts": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "framework": "vite"
 }
