@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building & Houses - Premium Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1E3A8A',
+                        'secondary': '#F59E0B',
+                        'accent': '#10B981',
+                        'slate-custom': '#334155',
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="font-inter text-slate-custom">
+    <!-- @COMPONENT: Navigation [responsive navbar with brand and navigation links] -->
+    <nav class="bg-white shadow-lg fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- @COMPONENT: Brand [company logo and name] -->
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-home text-primary text-2xl"></i>
+                    <span class="text-xl font-bold text-primary">Building & Houses</span>
+                </div>
+                
+                <!-- @COMPONENT: NavigationMenu [desktop navigation] -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-primary font-medium border-b-2 border-primary pb-1" data-event="click:navigateHome">Home</a>
+                    <a href="#projects" class="text-slate-custom hover:text-primary transition-colors" data-event="click:navigateProjects">Projects</a>
+                    <a href="#company" class="text-slate-custom hover:text-primary transition-colors" data-event="click:navigateCompany">Our Company</a>
+                    <a href="#reviews" class="text-slate-custom hover:text-primary transition-colors" data-event="click:navigateReviews">Reviews</a>
+                    <a href="#contact" class="text-slate-custom hover:text-primary transition-colors" data-event="click:navigateContact">Contact Us</a>
+                </div>
+
+                <!-- @COMPONENT: MobileMenuButton [hamburger menu for mobile] -->
+                <div class="md:hidden">
+                    <button class="text-slate-custom hover:text-primary" data-event="click:toggleMobileMenu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- @COMPONENT: MobileMenu [mobile navigation dropdown] -->
+        <!-- @STATE: mobileMenuOpen:boolean = false -->
+        <div class="md:hidden bg-white border-t hidden" data-bind="mobileMenuOpen">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-primary font-medium">Home</a>
+                <a href="#projects" class="block px-3 py-2 text-slate-custom hover:text-primary">Projects</a>
+                <a href="#company" class="block px-3 py-2 text-slate-custom hover:text-primary">Our Company</a>
+                <a href="#reviews" class="block px-3 py-2 text-slate-custom hover:text-primary">Reviews</a>
+                <a href="#contact" class="block px-3 py-2 text-slate-custom hover:text-primary">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: HeroSection [video background hero with no overlay text] -->
+    <section id="home" class="relative h-screen overflow-hidden mt-16">
+        <!-- @FUNCTIONALITY: Video background should autoplay, loop, and be muted for better UX -->
+        <div class="absolute inset-0 bg-black">
+            <!-- Luxury modern living room with panoramic city view -->
+            <div class="w-full h-full bg-cover bg-center bg-no-repeat" 
+                 style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080');">
+                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+            </div>
+            <!-- TODO: Replace with actual video element: <video autoplay muted loop class="w-full h-full object-cover"> -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: SkysLimitSection [call-to-action section] -->
+    <section class="py-20 bg-gradient-to-r from-primary to-blue-800 text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">The Sky's The Limit</h2>
+            <p class="text-xl mb-10 text-blue-100">Discover extraordinary properties that redefine luxury living and architectural excellence.</p>
+            <button class="bg-secondary hover:bg-yellow-500 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl" 
+                    data-event="click:navigateToProjects">
+                View Projects
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: SkysLimitSection -->
+
+    <!-- @COMPONENT: ServicesSection [what we can do for you grid] -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-custom mb-4">What We Can Do For You</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">From luxury residential developments to commercial properties, we deliver exceptional real estate solutions tailored to your vision.</p>
+            </div>
+            
+            <!-- @MAP: services.map(service => ( -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" data-bind="service.title">Luxury Home Development</h3>
+                    <p class="text-gray-600" data-bind="service.description">Custom-designed luxury homes that blend architectural innovation with premium craftsmanship and attention to detail.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" data-bind="service.title">Commercial Properties</h3>
+                    <p class="text-gray-600" data-bind="service.description">Strategic commercial real estate development focused on maximizing investment returns and creating business-friendly environments.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" data-bind="service.title">Property Renovation</h3>
+                    <p class="text-gray-600" data-bind="service.description">Complete property transformations that modernize spaces while preserving character and increasing market value.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" data-bind="service.title">Investment Consulting</h3>
+                    <p class="text-gray-600" data-bind="service.description">Expert guidance on real estate investments with market analysis and strategic planning for optimal portfolio growth.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" data-bind="service.title">Property Management</h3>
+                    <p class="text-gray-600" data-bind="service.description">Comprehensive property management services ensuring optimal maintenance, tenant relations, and investment performance.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" data-bind="service.title">Real Estate Brokerage</h3>
+                    <p class="text-gray-600" data-bind="service.description">Professional brokerage services connecting buyers and sellers with expert negotiation and market knowledge.</p>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ServicesSection -->
+
+    <!-- @COMPONENT: PropertyShowcase [featured properties gallery] -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-custom mb-4">Featured Properties</h2>
+                <p class="text-xl text-gray-600">Discover our portfolio of exceptional properties that define luxury living.</p>
+            </div>
+
+            <!-- @MAP: properties.map(property => ( -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Property 1 -->
+                <div class="group cursor-pointer">
+                    <!-- Modern luxury mansion with infinity pool overlooking the ocean -->
+                    <div class="overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                             alt="Modern luxury mansion with infinity pool" 
+                             class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="p-6 bg-white">
+                            <h3 class="text-xl font-semibold mb-2" data-bind="property.title">Ocean View Villa</h3>
+                            <p class="text-gray-600" data-bind="property.location">Malibu, California</p>
+                            <p class="text-primary font-bold text-lg mt-2" data-bind="property.price">$12,500,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="group cursor-pointer">
+                    <!-- Contemporary glass house surrounded by lush gardens -->
+                    <div class="overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                             alt="Contemporary glass house with garden" 
+                             class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="p-6 bg-white">
+                            <h3 class="text-xl font-semibold mb-2" data-bind="property.title">Glass House Estate</h3>
+                            <p class="text-gray-600" data-bind="property.location">Beverly Hills, California</p>
+                            <p class="text-primary font-bold text-lg mt-2" data-bind="property.price">$8,750,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="group cursor-pointer">
+                    <!-- Elegant colonial mansion with manicured front yard -->
+                    <div class="overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                             alt="Elegant colonial mansion with landscaped grounds" 
+                             class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="p-6 bg-white">
+                            <h3 class="text-xl font-semibold mb-2" data-bind="property.title">Colonial Manor</h3>
+                            <p class="text-gray-600" data-bind="property.location">Greenwich, Connecticut</p>
+                            <p class="text-primary font-bold text-lg mt-2" data-bind="property.price">$6,200,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 4 -->
+                <div class="group cursor-pointer">
+                    <!-- Sleek modern penthouse with city skyline views -->
+                    <div class="overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                             alt="Modern penthouse with city skyline view" 
+                             class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="p-6 bg-white">
+                            <h3 class="text-xl font-semibold mb-2" data-bind="property.title">Sky Tower Penthouse</h3>
+                            <p class="text-gray-600" data-bind="property.location">Manhattan, New York</p>
+                            <p class="text-primary font-bold text-lg mt-2" data-bind="property.price">$15,000,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 5 -->
+                <div class="group cursor-pointer">
+                    <!-- Rustic luxury cabin nestled in mountain forest -->
+                    <div class="overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                             alt="Luxury mountain cabin in forest setting" 
+                             class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="p-6 bg-white">
+                            <h3 class="text-xl font-semibold mb-2" data-bind="property.title">Mountain Retreat</h3>
+                            <p class="text-gray-600" data-bind="property.location">Aspen, Colorado</p>
+                            <p class="text-primary font-bold text-lg mt-2" data-bind="property.price">$4,850,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 6 -->
+                <div class="group cursor-pointer">
+                    <!-- Mediterranean villa with terracotta roof and palm trees -->
+                    <div class="overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img src="https://pixabay.com/get/g70eb0b9fc49e1e48b28f7c715873ae9a3387f9411b5cb67e3934fb35205283dec1164aee21d1faa1ac523f7409f0a8c4cd7957ac60db9662a79be4ab960a90f8_1280.jpg" 
+                             alt="Mediterranean villa with palm trees" 
+                             class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="p-6 bg-white">
+                            <h3 class="text-xl font-semibold mb-2" data-bind="property.title">Mediterranean Villa</h3>
+                            <p class="text-gray-600" data-bind="property.location">Naples, Florida</p>
+                            <p class="text-primary font-bold text-lg mt-2" data-bind="property.price">$3,750,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+
+            <!-- View All Properties Button -->
+            <div class="text-center">
+                <button class="bg-primary hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors" 
+                        data-event="click:viewAllProperties">
+                    View All Properties
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: PropertyShowcase -->
+
+    <!-- @COMPONENT: NewsletterSubscription [email capture section] -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-xl mb-10 text-blue-100">Subscribe to receive exclusive property listings, market insights, and investment opportunities directly to your inbox.</p>
+            
+            <!-- @COMPONENT: SubscriptionForm [email input and submit] -->
+            <form class="max-w-md mx-auto" data-event="submit:handleNewsletterSignup">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email address" 
+                        class="flex-1 px-4 py-3 rounded-lg text-slate-custom focus:outline-none focus:ring-2 focus:ring-secondary"
+                        data-bind="email"
+                        required
+                        data-mock="true" />
+                    <button 
+                        type="submit" 
+                        class="bg-secondary hover:bg-yellow-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors whitespace-nowrap"
+                        data-implementation="Should validate email and submit to newsletter API">
+                        Subscribe
+                        <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+                <p class="text-sm text-blue-200 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+            </form>
+            <!-- @END_COMPONENT: SubscriptionForm -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: NewsletterSubscription -->
+
+    <!-- @COMPONENT: Footer [company information and links] -->
+    <footer class="bg-slate-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-home text-secondary text-2xl"></i>
+                        <span class="text-xl font-bold">Building & Houses</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">Defining luxury real estate with exceptional properties, innovative design, and unparalleled service excellence since 1985.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-event="click:openSocial">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-event="click:openSocial">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-event="click:openSocial">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-event="click:openSocial">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-secondary transition-colors">Home</a></li>
+                        <li><a href="#projects" class="text-gray-300 hover:text-secondary transition-colors">Projects</a></li>
+                        <li><a href="#company" class="text-gray-300 hover:text-secondary transition-colors">Our Company</a></li>
+                        <li><a href="#reviews" class="text-gray-300 hover:text-secondary transition-colors">Reviews</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-secondary transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-phone mr-2"></i><span data-mock="true">(555) 123-4567</span></p>
+                        <p><i class="fas fa-envelope mr-2"></i><span data-mock="true">info@buildinghouses.com</span></p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i><span data-mock="true">123 Luxury Ave, Beverly Hills, CA 90210</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Building & Houses. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement proper navigation system, form handling, and interactive features
+        (function() {
+            // Mobile menu toggle functionality
+            const mobileMenuButton = document.querySelector('[data-event="click:toggleMobileMenu"]');
+            const mobileMenu = document.querySelector('[data-bind="mobileMenuOpen"]');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('[data-event="submit:handleNewsletterSignup"]');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement actual newsletter signup functionality
+                    alert('Thank you for subscribing! We will send you updates soon.');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
